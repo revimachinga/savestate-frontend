@@ -20,6 +20,7 @@ export default {
           '"Segoe UI Symbol"',
           '"Noto Color Emoji"',
         ],
+        press: ["'Press Start 2P'", 'cursive'],
       },
       spacing: {
         header: 'var(--header-height)',

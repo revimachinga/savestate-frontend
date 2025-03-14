@@ -17,9 +17,10 @@ import routes from './routes'
 import { promisifyGsap } from '@/lib/gsap'
 import { Header } from '@/components/header'
 import Footer from '@/components/footer'
-import { SITE_URL, WATERMARK } from '@/lib/constants'
+import { SITE_URL as siteUrl, WATERMARK } from '@/lib/constants'
 import { generateMeta } from '@/lib/utils/meta'
 import { generateLinks } from '@/lib/utils/links'
+import Sidebar from './components/sidebar'
 
 export const links: Route.LinksFunction = () =>
   generateLinks({
@@ -41,6 +42,19 @@ export const links: Route.LinksFunction = () =>
         type: 'font/woff2',
         crossOrigin: 'anonymous',
       },
+      {
+        href: 'https://fonts.googleapis.com/css2?&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"',
+        as: 'font',
+        type: 'font',
+        crossOrigin: 'anonymous',
+      },
+      {
+        href: 'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"',
+        as: 'font',
+        type: 'font',
+        crossOrigin: 'anonymous',
+      },
+      //https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap
     ],
   })
 
@@ -58,9 +72,9 @@ export const meta: MetaFunction<typeof loader> = () => {
     title: 'Rebels Starter',
     description:
       'A react-router v7 starter made by rebels for rebels. Featuring: react-router v7, react 19 + compiler, tailwindcss, gsap, eslint + prettier, page transitions, + 1000 aura.',
-    url: SITE_URL,
+    url: siteUrl || '',
     siteName: 'Rebels Starter',
-    image: { url: `${SITE_URL}/opengraph-image.png`, width: 1200, height: 630, type: 'image/png' },
+    image: { url: `${siteUrl}/opengraph-image.png`, width: 1200, height: 630, type: 'image/png' },
   })
 
   return meta
@@ -76,9 +90,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body suppressHydrationWarning>
-        <Header />
-        {children}
-        <Footer />
+        <div className="flex">
+          <Sidebar />
+          <div className="flex-1 flex flex-col">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </div>{' '}
         <ScrollRestoration />
         <Scripts />
       </body>

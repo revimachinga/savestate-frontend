@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 :root {
   --header-height: 48px;
@@ -12,7 +20,7 @@
 
 html,
 body {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: "Ubuntu Mono", monospace;
   font-display: swap;
   text-rendering: geometricprecision;
   text-size-adjust: 100%;
